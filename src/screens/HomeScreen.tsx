@@ -12,6 +12,8 @@ import { menBanner } from '../data/products';
 import { menProducts } from '../data/products';
 import { womenProducts2 } from '../data/products';
 import { menProducts2 } from '../data/products';
+import { accessories } from '../data/products';
+import {accessoriesBanner} from '../data/products';
 import womenProducts  from '../data/products';
 
 const HomeScreen = () => {
@@ -26,14 +28,20 @@ const HomeScreen = () => {
             bannerData={womenBanner} 
             products1={womenProducts} 
             products2={womenProducts2}
-            backgroundImage={require("../../assets/images/home1stImage.png")}/> :
+            backgroundImage={require("../../assets/images/home1stImage.png")}/> 
+          : selectedCategory === 'Men' ?
           <GenderPage 
             bannerData={menBanner} 
             products1={menProducts} 
             backgroundImage={require("../../assets/images/background.jpg")}
             products2={menProducts2}
             />
-           
+           :  <GenderPage 
+           bannerData={accessoriesBanner} 
+           products1={accessories} 
+           backgroundImage={require("../../assets/images/jwellery.jpg")}
+           products2={accessories}
+           />
       }
       
     </>

@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     width: '100%',
-    height: '7%',
+    height: '10%',
     paddingLeft: 34,
     paddingRight: 22,
     flexDirection: 'row',

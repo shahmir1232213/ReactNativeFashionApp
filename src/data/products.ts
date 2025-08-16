@@ -42,6 +42,24 @@ export const menBanner = [
   },
 ];
 
+export const accessoriesBanner = [
+  {
+    head1: "Bridal Collection",
+    head2: "Make Every Moment\nShine Bright",
+    image: require("../../assets/images/jewBg1.png"),
+  },
+  {
+    head1: "Trendy Goggles",
+    head2: "Shades That Define\nYour Style",
+    image: require("../../assets/images/jewBg2.png"),
+  },
+  {
+    head1: "Luxury Watches",
+    head2: "Timeless Elegance\nOn Your Wrist",
+    image: require("../../assets/images/jewBg3.png"),
+  },
+];
+
 
 const womenProducts: Product[] = [
   {
@@ -145,6 +163,32 @@ export const menProducts2 = [
   },
 ];
 
-
+export const accessories = [
+  {
+    image: require("../../assets/images/acess1.png"),
+    productText: "Leather Wallet",
+    productPrice: "$19.99",
+  },
+  {
+    image: require("../../assets/images/acess2.png"),
+    productText: "Classic Sunglasses",
+    productPrice: "$24.99",
+  },
+  {
+    image: require("../../assets/images/acess3.png"),
+    productText: "Analog Wrist Watch",
+    productPrice: "$49.99",
+  },
+  {
+    image: require("../../assets/images/acess4.png"),
+    productText: "Canvas Belt",
+    productPrice: "$14.99",
+  },
+  {
+    image: require("../../assets/images/acess5.png"),
+    productText: "Woolen Scarf",
+    productPrice: "$12.99",
+  },
+]
 
 export default womenProducts;

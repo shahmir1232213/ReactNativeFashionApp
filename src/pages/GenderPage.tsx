@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   image: {
     height: "100%",
     width: "100%",
-    resizeMode: "stretch", // fills container while keeping aspect ratio
+    resizeMode: "cover", // fills container while keeping aspect ratio
     borderRadius: 40,
   },
    container: {
