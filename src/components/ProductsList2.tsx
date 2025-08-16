@@ -1,8 +1,11 @@
 import React from "react";
-import { ScrollView, View, Image, Text, StyleSheet } from "react-native";
+import { ScrollView, View, Image, Text, StyleSheet, TouchableOpacity} from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import products from "../data/products"; // Adjust the import path as necessary
+import { Touchable } from "react-native/types_generated/index";
 
 const ProductsList2 = ({ products }) => {
+  const navigation = useNavigation()
   return (
     <ScrollView
       style={styles.container}
@@ -10,13 +13,13 @@ const ProductsList2 = ({ products }) => {
       showsHorizontalScrollIndicator={false}
     >
       {products.map((item, index) => (
-       <View key={index} style={styles.card}>
+       <TouchableOpacity key={index} style={styles.card} onPress={()=>{navigation.navigate('ProductScreen', { product: item })}}>
           <Image source={item.image} style={styles.image} />
         <View style={styles.textContainer}>
           <Text style={styles.productText}>{item.productText}</Text>
           <Text style={styles.productPrice}>${item.productPrice}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
 
       ))}
     </ScrollView>

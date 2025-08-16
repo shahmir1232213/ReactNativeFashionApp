@@ -5,7 +5,7 @@ import Banner from '../components/Banner';
 import ProductsList2 from '../components/ProductsList2';
 import React from 'react';
 
-const GenderPage = ({ bannerData, products1, backgroundImage, products2}) => {
+const GenderPage = ({ bannerData, products1, backgroundImage, products2 , navigation}) => {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.imageCont}>
@@ -16,7 +16,7 @@ const GenderPage = ({ bannerData, products1, backgroundImage, products2}) => {
       </View>
 
       <Divider text="Feature Products" />
-      <ProductsList products={products1} />
+      <ProductsList products={products1} navigation={navigation} />
 
       {bannerData.map((banner, index) => (
         <View key={index} style={{ marginTop: index === 0 ? -40 : 20 }}>
