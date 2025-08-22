@@ -6,6 +6,7 @@ import ProductsList from '../components/ProductsList';
 import ProductsList2 from '../components/ProductsList2';
 import Banner from '../components/Banner';
 import GenderPage from '../pages/GenderPage';
+import CartPage from '../pages/CartPage';
 import React,{useState} from 'react';
 import { womenBanner } from '../data/products';
 import { menBanner } from '../data/products';
@@ -36,12 +37,14 @@ const HomeScreen = () => {
             backgroundImage={require("../../assets/images/background.jpg")}
             products2={menProducts2}
             />
-           :  <GenderPage 
+           : selectedCategory === 'Acessories' ? 
+           <GenderPage 
            bannerData={accessoriesBanner} 
            products1={accessories} 
            backgroundImage={require("../../assets/images/jwellery.jpg")}
            products2={accessories}
            />
+           : <CartPage />
       }
       
     </>

@@ -29,7 +29,7 @@ export default function Intro({navigation}) {
           </Swiper>
         </View>
         <View style={styles.bottomDiv}>
-            <Pressable style={styles.buttonContainer} onPress={()=>{navigation.navigate('MainTabs', { screen: 'Home' })}}>
+            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate('LoginScreen')}>
                 <Text style={styles.buttonText}>Get Started</Text>
             </Pressable>
         </View>

@@ -1,12 +1,13 @@
-import { Text, StyleSheet, View, Image, ScrollView,TouchableOpacity  } from 'react-native';
+import { Text, StyleSheet, View, Image, ScrollView,TouchableOpacity,useColorScheme  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
 const ProductsList = ({ products }) => {
   const navigation = useNavigation();
+  const colorScheme = useColorScheme();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, colorScheme === 'dark' && { backgroundColor: '#2a2f37' }]}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {products.map((item, index) => (
           <TouchableOpacity  style={styles.card} key={index} 
@@ -16,9 +17,9 @@ const ProductsList = ({ products }) => {
             <View style={styles.product}>
               <Image style={styles.image} source={item.image} />
             </View>
-            <View style={styles.productInfo}>
-              <Text style={styles.productText}>{item.productText}</Text>
-              <Text style={styles.priceText}>${item.productPrice}</Text>
+            <View style={[styles.productInfo, colorScheme === 'dark' && { backgroundColor: '#2a2f37'}]}>
+              <Text style={[styles.productText, colorScheme === 'dark' && { color: 'white' }]}>{item.productText}</Text>
+              <Text style={[styles.priceText, colorScheme === 'dark' && { color: 'white' }]}>{`$${item.productPrice}`}</Text>
             </View>
           </TouchableOpacity>
         ))}

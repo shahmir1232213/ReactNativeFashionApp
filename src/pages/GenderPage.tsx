@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView,useColorScheme} from 'react-native';
 import Divider from '../components/Divider';
 import ProductsList from '../components/ProductsList';
 import Banner from '../components/Banner';
@@ -6,15 +6,15 @@ import ProductsList2 from '../components/ProductsList2';
 import React from 'react';
 
 const GenderPage = ({ bannerData, products1, backgroundImage, products2 , navigation}) => {
+  const colorScheme = useColorScheme()
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView style={[styles.container,colorScheme === 'dark' && {backgroundColor:'#2a2f37'}]} showsVerticalScrollIndicator={false}>
       <View style={styles.imageCont}>
         <Image
           style={styles.image}
           source={backgroundImage}
         />
       </View>
-
       <Divider text="Feature Products" />
       <ProductsList products={products1} navigation={navigation} />
 
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
   imageCont: {
     width: '100%',
     height: 200,
-    borderColor: 'white',
-    borderWidth: 2,
+   // borderColor: 'white',
+   // borderWidth: 2,
     padding: 12,
   },
   image: {

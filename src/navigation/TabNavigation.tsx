@@ -3,16 +3,21 @@ import HomeScreen from '../screens/HomeScreen';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Search from 'react-native-vector-icons/Feather'
 import Profile from 'react-native-vector-icons/Ionicons'
-
+import { useColorScheme } from 'react-native';
 const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
+  const colorScheme = useColorScheme();
+
   return (
     <Tab.Navigator screenOptions={
       {
         headerShown:false,
-        tabBarActiveTintColor: 'black',
+        tabBarActiveTintColor: colorScheme === 'dark' ? '#0ca5e9' : '#636363',
         tabBarInactiveTintColor: '#c9c8c8ff',
+        tabBarStyle: {
+          backgroundColor: colorScheme === 'dark' ? '#141416' : 'white',
+        },
       }
     }>
       <Tab.Screen 

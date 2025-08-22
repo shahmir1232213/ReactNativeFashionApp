@@ -1,21 +1,22 @@
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, useColorScheme} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import MaterialDesignIcons from 'react-native-vector-icons/FontAwesome';
+import  Feather from 'react-native-vector-icons/Feather';
 import React, { useState } from 'react';
 
 const categories = [
   { id: 1, name: 'Women', icon: <Ionicons name="woman-outline" size={27} /> },
   { id: 2, name: 'Men', icon: <Ionicons name="man-outline" size={27} /> },
   { id: 3, name: 'Acessories', icon: <FontAwesome5 name="glasses" size={27} /> },
-  { id: 4, name: 'Fashion', icon: <MaterialDesignIcons name="eye" size={27} /> },
+  { id: 4, name: 'Cart', icon: <Feather name="shopping-cart" size={27} /> },
 ];
 
 const ScrllHeader = ({ setSelectedCategory }) => {
   const [activeId, setActiveId] = useState(1); // Default active category
+  const colorScheme = useColorScheme()
 
   return (
-    <View style={styles.scrollView}>
+    <View style={[styles.scrollView, colorScheme === 'dark' && { backgroundColor: '#2a2f37' }]}>
       <ScrollView
         horizontal
         contentContainerStyle={{
@@ -45,6 +46,7 @@ const ScrllHeader = ({ setSelectedCategory }) => {
               style={[
                 styles.text,
                 activeId === cat.id && styles.activeText,
+                { color: colorScheme === 'dark' ? 'white' : '#9d9d9d' },
               ]}
             >
               {cat.name}

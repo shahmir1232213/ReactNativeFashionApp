@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View,useColorScheme } from 'react-native'
 import { ImageSourcePropType } from "react-native";
 import React from 'react';    
 
@@ -9,11 +9,12 @@ interface BannerProps {
 }
 
 const Banner:React.FC<BannerProps> = ({ head1, head2, imageSource }) => {
+  const colorScheme = useColorScheme();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, colorScheme === 'dark' && { backgroundColor: '#23262f' }]}>
         <View>
-            <Text style={styles.head1}>{head1}</Text>
-            <Text style={styles.head2}>{head2}</Text>
+            <Text style={[styles.head1,colorScheme === 'dark' && { color: 'white' }]}>{head1}</Text>
+            <Text style={[styles.head2,colorScheme === 'dark' && { color: 'white' }]}>{head2}</Text>
         </View>
         <Image 
             source={imageSource}

@@ -4,6 +4,7 @@ import TabNavigation from './TabNavigation';
 import WelcomeScreen from '../screens/Welcome';
 import IntroScreen from '../screens/Intro';
 import ProductScreen from '../screens/ProductScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,7 @@ export default function StackNavigation() {
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="IntroScreen" component={IntroScreen} />
       <Stack.Screen name="ProductScreen" component={ProductScreen}/>
+      <Stack.Screen name="LoginScreen" component={LoginScreen}/>
       {/* Main app with bottom tabs */}
       <Stack.Screen name="MainTabs" component={TabNavigation} />
     </Stack.Navigator>

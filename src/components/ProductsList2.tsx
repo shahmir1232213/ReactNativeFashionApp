@@ -1,11 +1,12 @@
 import React from "react";
-import { ScrollView, View, Image, Text, StyleSheet, TouchableOpacity} from "react-native";
+import { ScrollView, View, Image, Text, StyleSheet, TouchableOpacity, useColorScheme} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import products from "../data/products"; // Adjust the import path as necessary
 import { Touchable } from "react-native/types_generated/index";
 
 const ProductsList2 = ({ products }) => {
   const navigation = useNavigation()
+  const colorScheme = useColorScheme();
   return (
     <ScrollView
       style={styles.container}
@@ -13,11 +14,11 @@ const ProductsList2 = ({ products }) => {
       showsHorizontalScrollIndicator={false}
     >
       {products.map((item, index) => (
-       <TouchableOpacity key={index} style={styles.card} onPress={()=>{navigation.navigate('ProductScreen', { product: item })}}>
+       <TouchableOpacity key={index} style={[styles.card, colorScheme === 'dark' && { backgroundColor: '#141416' }]} onPress={()=>{navigation.navigate('ProductScreen', { product: item })}}>
           <Image source={item.image} style={styles.image} />
         <View style={styles.textContainer}>
-          <Text style={styles.productText}>{item.productText}</Text>
-          <Text style={styles.productPrice}>${item.productPrice}</Text>
+          <Text style={[styles.productText, colorScheme === 'dark' && { color: 'white' }]}>{item.productText}</Text>
+          <Text style={[styles.productPrice, colorScheme === 'dark' && { color: 'white' }]}>{`$${item.productPrice}`}</Text>
         </View>
       </TouchableOpacity>
 
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
   textContainer: {
     width: 100,
     height: 50,
+    gap: 8,
   },
   productText: {
     fontSize: 14,
