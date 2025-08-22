@@ -1,14 +1,46 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import SigningHeaders from '../components/SigningHeaders'
+import SigningInputFields from '../components/SigningInputFields'
+import SigningButton from '../components/SigningButton'
+import { useNavigation } from '@react-navigation/native'
+import React,{useState} from 'react'
 
-const SignUpScreen = () => {
+function handleLogin(email: string, password: string) {
+  console.log('Logging in with:', email, password);
+}
+
+const LoginScreen = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const navigation = useNavigation();
+
   return (
-    <View>
-      <Text>SignUpScreen</Text>
+    <View style={{paddingTop: 47,paddingLeft:30,paddingRight:30}}>
+      <SigningHeaders header={`Create your${'\n'}your account`} />
+      <SigningInputFields labels={[
+        { placeholder: 'Full Name', state: fullName, setState: setFullName },
+        { placeholder: 'Email address', state: email, setState: setEmail },
+        { placeholder: 'Password', state: password, setState: setPassword },
+        { placeholder: 'Confirm Password', state: confirmPassword, setState: setConfirmPassword }
+      ]} />
+      <View style={{alignItems:'center'}}>
+        <SigningButton title='Sign Up' />
+      </View>
+    <Pressable onPress={()=>navigation.navigate('LoginScreen')}>
+        <Text style={styles.signupText}>Already have an account? Log In</Text>
+    </Pressable>
+    
     </View>
   )
 }
 
-export default SignUpScreen
+export default LoginScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    signupText: {
+        textAlign: 'center',
+        marginTop: 20,
+    },
+})

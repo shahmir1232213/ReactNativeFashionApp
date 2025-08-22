@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import SigningHeaders from '../components/SigningHeaders'
 import SigningInputFields from '../components/SigningInputFields'
 import SigningButton from '../components/SigningButton'
+import { useNavigation } from '@react-navigation/native'
 import React,{useState} from 'react'
 
 function handleLogin(email: string, password: string) {
@@ -11,6 +12,7 @@ function handleLogin(email: string, password: string) {
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation();
 
   return (
     <View style={{paddingTop: 47,paddingLeft:30,paddingRight:30}}>
@@ -22,7 +24,10 @@ const LoginScreen = () => {
       <View style={{alignItems:'center'}}>
         <SigningButton title='Log In' />
       </View>
-      <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
+    <Pressable onPress={()=>navigation.navigate('SignUpScreen')}>
+        <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
+    </Pressable>
+    
     </View>
   )
 }
