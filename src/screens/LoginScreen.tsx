@@ -4,9 +4,17 @@ import SigningInputFields from '../components/SigningInputFields'
 import SigningButton from '../components/SigningButton'
 import { useNavigation } from '@react-navigation/native'
 import React,{useState} from 'react'
+//import axios from 'axios'
+import API from '../api'
 
-function handleLogin(email: string, password: string) {
-  console.log('Logging in with:', email, password);
+async function handleLogin(email: string, password: string) {
+try {
+    const response = await API.get('/');
+    console.log("Server response:", response.data);
+  } catch (error: any) {
+    console.error("Error connecting to backend:", error.message);
+  }
+
 }
 
 const LoginScreen = () => {
@@ -22,7 +30,7 @@ const LoginScreen = () => {
         { placeholder: 'Password', state: password, setState: setPassword }
       ]} />
       <View style={{alignItems:'center'}}>
-        <SigningButton title='Log In' />
+        <SigningButton title='Log In' onPress={() => handleLogin(email, password)} />
       </View>
     <Pressable onPress={()=>navigation.navigate('SignUpScreen')}>
         <Text style={styles.signupText}>Don't have an account? Sign Up</Text>

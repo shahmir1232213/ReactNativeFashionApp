@@ -3,11 +3,12 @@ import React from 'react'
 
 interface Props {
     title: string;
-}
+    onPress: () => void;
+  }
 
-const SigningButton: React.FC<Props> = ({title}) => {
+const SigningButton: React.FC<Props> = ({title,onPress}) => {
   return (
-    <Pressable style={styles.button}>
+    <Pressable style={styles.button} onPress={onPress}>
       <Text style={styles.buttonText}>{title}</Text>
     </Pressable>
   )
