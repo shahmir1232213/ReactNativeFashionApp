@@ -1,17 +1,30 @@
 import axios from "axios";
-import * as Keychain from "react-native-keychain";
+import * as Keychain from "react-native-keychain"; 
 
-const API = axios.create({baseURL:'http://192.168.1.104:3000'})
+const API = axios.create({
+    baseURL:'http://192.168.1.104:3000',
+})
 
-API.interceptors.request.use(async (config) => {
+API.interceptors.request.use(
+  async function addToken(config) {
+    // 1. Get saved login info (username & token) from Keychain
     const credentials = await Keychain.getGenericPassword();
+
+    // 2. If we have saved credentials, add the token to the request headers
     if (credentials) {
-        config.headers.Authorization = `Bearer ${credentials.password}`;
+      config.headers.Authorization = "Bearer " + credentials.password;
     }
+
+    // 3. Always return the config (with or without the token)
     return config;
-}, (error) => {
+  },
+
+  function handleError(error) {
+    // If something goes wrong, reject the request
     return Promise.reject(error);
-});
+  }
+);
+
 
 export default API;
     

@@ -4,23 +4,37 @@ import SigningInputFields from '../components/SigningInputFields'
 import SigningButton from '../components/SigningButton'
 import { useNavigation } from '@react-navigation/native'
 import React,{useState} from 'react'
-//import axios from 'axios'
+import * as Keychain from "react-native-keychain";
 import API from '../api'
-
-async function handleLogin(email: string, password: string) {
-try {
-    const response = await API.get('/');
-    console.log("Server response:", response.data);
-  } catch (error: any) {
-    console.error("Error connecting to backend:", error.message);
-  }
-
-}
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+
+  async function handleLogin(email: string, password: string) {
+      if (!email || !password) {
+       console.log("Email and password are required");
+       return;
+      }
+      try{
+       const response = await API.post('/login',{email, password});
+        if(response.status === 200){
+          console.log("response", response.data);
+          await Keychain.setGenericPassword('token', response.data.token);
+          navigation.navigate('TestScreen');
+         // const credentials = await Keychain.getGenericPassword();
+         // console.log('Credentials successfully saved to Keychain!', credentials);
+
+        }
+        else{
+          console.log("Login failed with status:",response.status);
+        }
+      } catch (error: any) {
+        console.error("Error connecting to backend:", error.message);
+      }
+
+    }
 
   return (
     <View style={{paddingTop: 47,paddingLeft:30,paddingRight:30}}>
