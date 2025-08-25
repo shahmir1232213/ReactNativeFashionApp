@@ -7,6 +7,7 @@ import ProductScreen from '../screens/ProductScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import TestScreen from '../screens/TestScreen';
+import IsLoggedIn from '../components/isLoggedIn'
 
 const Stack = createNativeStackNavigator();
 

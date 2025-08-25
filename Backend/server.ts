@@ -3,6 +3,7 @@ import cors from 'cors';
 import  jwt from 'jsonwebtoken';
 import { logInController } from './controllers/logInController.ts';
 import { isLogggedIn } from './middlewares/isLoggedIn.ts';
+import { displayController } from './controllers/displayController.ts';
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(cors({
 app.use(express.json());
 
 app.post('/login', logInController);
-app.get('/protected',isLogggedIn)
+app.get('/protected',isLogggedIn, displayController);
 
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');

@@ -10,11 +10,12 @@ export async function isLogggedIn(req:Request, res:Response,next){
                 return res.status(401).json({message:'No token provided'});
             }
         try{  
+            console.log('token provided: ',token)
             const decoded = jwt.verify(token as string,'123')
             req.user = decoded;
-            console.log('Token verified, user:', req.user);
-            return res.status(200).json({message:'You are authorized to access this route', user: req.user});
-            //next();
+           // console.log('Token verified, user:', req.user);
+          //  res.status(200).json({message:'You are authorized to access this route', user: req.user});
+            next();
         }catch(error){
             console.log(error,'token expireed');
             return res.status(401).json({message:'token expired or invalid'});

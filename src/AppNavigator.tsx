@@ -6,7 +6,7 @@ import React from 'react'
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-        <StackNavigation />
+         <StackNavigation />   
     </NavigationContainer>
   )
 }

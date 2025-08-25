@@ -22,7 +22,8 @@ const LoginScreen = () => {
         if(response.status === 200){
           console.log("response", response.data);
           await Keychain.setGenericPassword('token', response.data.token);
-          navigation.navigate('TestScreen');
+          navigation.navigate('MainTabs',{screens:'Home'});
+         //navigation.navigate('TestScreen')
          // const credentials = await Keychain.getGenericPassword();
          // console.log('Credentials successfully saved to Keychain!', credentials);
 

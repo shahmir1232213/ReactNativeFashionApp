@@ -3,10 +3,21 @@ import Divider from '../components/Divider';
 import ProductsList from '../components/ProductsList';
 import Banner from '../components/Banner';
 import ProductsList2 from '../components/ProductsList2';
-import React from 'react';
+// import * as Keychain from 'react-native-keychain'
+import React,{useEffect} from 'react';
 
 const GenderPage = ({ bannerData, products1, backgroundImage, products2 , navigation}) => {
   const colorScheme = useColorScheme()
+  // useEffect(()=>{
+  //    async function clear(){
+  //      setTimeout(async () => {
+  //       console.log('removing token ....')
+  //       await Keychain.resetGenericPassword()
+  //       console.log('token removed')
+  //      },1500)
+  //    }
+  //    clear()
+  //  })
   return (
     <ScrollView style={[styles.container,colorScheme === 'dark' && {backgroundColor:'#2a2f37'}]} showsVerticalScrollIndicator={false}>
       <View style={styles.imageCont}>
