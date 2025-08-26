@@ -6,7 +6,7 @@ interface Prop {
     text: string
 }
 
-const Header: React.Fc<Prop> = ({ text }) => {
+const Header: React.FC<Prop> = ({ text }) => {
     const colorScheme = useColorScheme()
     return (
         <View style={[styles.heading, colorScheme === 'dark' && { backgroundColor: '#2a2f37'}]} >

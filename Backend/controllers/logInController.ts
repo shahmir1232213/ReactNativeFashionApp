@@ -7,7 +7,7 @@ export function logInController (req: Request, res: Response):void{
    console.log(`Login attempt with email: ${email} and password: ${password}`);
    const payload = {email}
    const secretKey = '123';
-   const token = jwt.sign(payload, secretKey, {expiresIn:'10sec'});
+   const token = jwt.sign(payload, secretKey, {expiresIn:'10min'});
    res.status(200).json({message:'Login successful', token});
    
 }

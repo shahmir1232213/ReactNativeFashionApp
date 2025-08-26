@@ -11,7 +11,11 @@ const TestScreen = () => {
   const [userName,setUserName] = React.useState<string>('')
  // const [status, setStatus] = useState(""); // default
   const navigation = useNavigation();
-
+  useEffect(()=>{
+    console.log('running testScreen')
+    return () => console.log('unmounting testScreen')
+  })
+  
   useEffect(()=>{
     if(modalVisible === true){
       setTimeout(() => setModalVisible(false), 1500);
@@ -23,7 +27,7 @@ const TestScreen = () => {
       setTimeout(async () => (await Keychain.resetGenericPassword()),1500 )
     }
     clear()
-  })
+  },[])
 
   async function checkCredentials() {
     try {

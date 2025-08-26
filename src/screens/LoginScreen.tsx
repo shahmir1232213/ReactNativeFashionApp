@@ -3,7 +3,7 @@ import SigningHeaders from '../components/SigningHeaders'
 import SigningInputFields from '../components/SigningInputFields'
 import SigningButton from '../components/SigningButton'
 import { useNavigation } from '@react-navigation/native'
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import * as Keychain from "react-native-keychain";
 import API from '../api'
 
@@ -11,6 +11,13 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+//  useEffect(()=>{
+//     async function clear(){
+//       setTimeout(async () => (await Keychain.resetGenericPassword()),1500 )
+//       console.log('token removed')
+//     }
+//     clear()
+//   },[])
 
   async function handleLogin(email: string, password: string) {
       if (!email || !password) {

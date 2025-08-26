@@ -16,13 +16,36 @@ export default function StackNavigation() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {/* First screens before you enter the tab navigator */}
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
-      <Stack.Screen name="IntroScreen" component={IntroScreen} />
+       <Stack.Screen name="IntroScreen" component={IntroScreen} /> 
       <Stack.Screen name="ProductScreen" component={ProductScreen}/>
       <Stack.Screen name="LoginScreen" component={LoginScreen}/>
       <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
-      <Stack.Screen name="TestScreen" component={TestScreen} />
+      <Stack.Screen name="TestScreen" component={TestScreen} /> 
+
+           {/* <Stack.Screen 
+            name="TestScreen"
+            component={() => (
+              <IsLoggedIn>
+                <TestScreen/>
+              </IsLoggedIn>
+            )}
+          />  */}
+
+
+
       {/* Main app with bottom tabs */}
-      <Stack.Screen name="MainTabs" component={TabNavigation} />
+       <Stack.Screen name="MainTabs" component={TabNavigation} /> 
+      {/* <Stack.Screen 
+        name="MainTabs">
+           {() => (
+          <IsLoggedIn>
+            <TabNavigation />
+          </IsLoggedIn>
+        )}
+        </Stack.Screen> */}
+       
+      
+
     </Stack.Navigator>
   );
 }

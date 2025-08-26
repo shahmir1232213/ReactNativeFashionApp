@@ -6,7 +6,7 @@ import ProductsList2 from '../components/ProductsList2';
 // import * as Keychain from 'react-native-keychain'
 import React,{useEffect} from 'react';
 
-const GenderPage = ({ bannerData, products1, backgroundImage, products2 , navigation}) => {
+const GenderPage = ({ bannerData, products1, backgroundImage, products2 , navigation, category}) => {
   const colorScheme = useColorScheme()
   // useEffect(()=>{
   //    async function clear(){
@@ -17,7 +17,11 @@ const GenderPage = ({ bannerData, products1, backgroundImage, products2 , naviga
   //      },1500)
   //    }
   //    clear()
-  //  })
+  //  },[])
+  useEffect(()=>{
+    console.log('mnounted Gender Page',category)
+    return () => console.log('unmounted Gender Page',category)
+  })
   return (
     <ScrollView style={[styles.container,colorScheme === 'dark' && {backgroundColor:'#2a2f37'}]} showsVerticalScrollIndicator={false}>
       <View style={styles.imageCont}>

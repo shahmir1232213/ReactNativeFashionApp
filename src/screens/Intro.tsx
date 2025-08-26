@@ -1,10 +1,15 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { View, Image, StyleSheet,Pressable,Text} from "react-native";
 import Swiper from "react-native-swiper";
+import { useNavigation } from "@react-navigation/native";
 
-
-export default function Intro({navigation}) {
+export default function Intro() {
+  const navigation = useNavigation()
   const [swipeText,setSwipeTesxt] = useState('')
+  useEffect(()=>{
+      console.log("👉 ScreenB mounted");
+      return () => console.log("❌ ScreenB unmounted");
+    })
   return (
     <View style={styles.parentCont}>
       <View>

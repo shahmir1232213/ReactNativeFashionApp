@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, ImageBackground, StyleSheet, View, Pressable } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
+import { useNavigation } from '@react-navigation/native';
 type Prop = {
   navigation:NativeStackNavigationProp
 }
 
-export default function Welcome({navigation}:Prop) {
+export default function Welcome() {
+  const navigation = useNavigation()
+  useEffect(()=>{
+    console.log("👉 Screen A mounted");
+    return () => console.log("❌ Screen A unmounted");
+  },[])
   return (
     <ImageBackground
       source={require('../../assets/images/homeScreen.png')}

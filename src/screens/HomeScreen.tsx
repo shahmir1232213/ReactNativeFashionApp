@@ -16,22 +16,26 @@ import { menProducts2 } from '../data/products';
 import { accessories } from '../data/products';
 import {accessoriesBanner} from '../data/products';
 import womenProducts  from '../data/products';
+import IsLoggedIn from '../components/isLoggedIn';
 
 const HomeScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Women');
   return (
     <>
+    {/* <IsLoggedIn> */}
       <Header text="GemStore" />
       <ScrollHeader setSelectedCategory={setSelectedCategory} />
       {
         selectedCategory === 'Women' ? 
           <GenderPage 
+            category='Women'
             bannerData={womenBanner} 
             products1={womenProducts} 
             products2={womenProducts2}
             backgroundImage={require("../../assets/images/home1stImage.png")}/> 
           : selectedCategory === 'Men' ?
           <GenderPage 
+            category='Men'
             bannerData={menBanner} 
             products1={menProducts} 
             backgroundImage={require("../../assets/images/background.jpg")}
@@ -39,13 +43,16 @@ const HomeScreen = () => {
             />
            : selectedCategory === 'Acessories' ? 
            <GenderPage 
-           bannerData={accessoriesBanner} 
-           products1={accessories} 
-           backgroundImage={require("../../assets/images/jwellery.jpg")}
-           products2={accessories}
+            category='Acessories'
+            bannerData={accessoriesBanner} 
+            products1={accessories} 
+            backgroundImage={require("../../assets/images/jwellery.jpg")}
+            products2={accessories}
            />
            : <CartPage />
+           
       }
+      {/* </IsLoggedIn> */}
       
     </>
   );
