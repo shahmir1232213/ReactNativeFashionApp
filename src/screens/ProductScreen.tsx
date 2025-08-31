@@ -1,15 +1,36 @@
 import { StyleSheet, Text, View,Image, ScrollView, TouchableOpacity,useColorScheme } from 'react-native'
 import React,{useState} from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+import { setCart } from '../redux/slices/cartSlice'
 import Arrow from 'react-native-vector-icons/MaterialIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
+import type { CartState } from '../redux/slices/cartSlice'
+import { add } from 'react-native/types_generated/Libraries/Animated/AnimatedExports'
 
 const ProductScreen = ({route}) => {
-  const { product } = route.params;
-  const [showDescription, setShowDescription] = useState(false);
-  const [showReview, setShowReview] = useState(false)
+  const { product,category } = route.params;
+  const [showDescription, setShowDescription] = useState<boolean>(false);
+  const [showReview, setShowReview] = useState<boolean>(false)
   const [pressedColor, setPressedColor] = useState(null);
+  console.log('caregory: ',route.params)
+  const [addToCartPressed, setAddToCartPressed] = useState<CartState>({
+    category: category,
+    name: product.productText,
+    size: '',
+    color: '',
+    quantity: 1,
+  });
   const colorScheme = useColorScheme();
+  const colors = ['#ee6969', '#e7c0a7', 'black'];
+  const size = ['S','M','L']
+  const dispatch = useDispatch()
+  function addToCart(){
+    //console.log('product: ',product)
+    dispatch(setCart(addToCartPressed))
+  }
+
+   const cartItems = useSelector((state)=>state.cart)
+    console.log('cartItems: ',cartItems)
 
   return (
     <View style={[styles.container, colorScheme === 'dark' && { backgroundColor: '#141416' }]}>
@@ -25,44 +46,47 @@ const ProductScreen = ({route}) => {
                 <View style={{gap:7}}>
                     <Text style={[styles.colorText,{ color: colorScheme === 'dark' ? '#b1b5c3' : '#777e90' }]} >Color</Text>
                     <View style={styles.colorsContainer}>
-                        <TouchableOpacity
-                            onPressIn={() => setPressedColor('#ee6969')}
-                           // onPressOut={() => setPressedColor(null)}   // 👈 reset when released
-                            style={[
-                                styles.colors,
-                                { backgroundColor: '#ee6969' },
-                                pressedColor === '#ee6969' && { elevation: 10 },
-                            ]}
-                            />
-
-                        <TouchableOpacity
-                            onPressIn={() => setPressedColor('#e7c0a7')}
-                           // onPressOut={() => setPressedColor(null)}
-                            style={[
-                                styles.colors,
-                                { backgroundColor: '#e7c0a7' },
-                                pressedColor === '#e7c0a7' && { elevation: 10 },
-                            ]}
-                            />
-
-                        <TouchableOpacity
-                            onPressIn={() => setPressedColor('black')}
-                          //  onPressOut={() => setPressedColor(null)}
-                            style={[
-                                styles.colors,
-                                { backgroundColor: 'black' },
-                                pressedColor === 'black' && { elevation: 10 },
-                            ]}
-                            />
+                        {
+                            colors.map((color,index)=>(
+                                <TouchableOpacity
+                                key={index}
+                                onPressIn={() => {
+                                    setPressedColor(color)
+                                    setAddToCartPressed({
+                                        ...addToCartPressed,
+                                        color: color
+                                    })
+                                }}
+                                style={[
+                                    styles.colors,
+                                    { backgroundColor: color },
+                                    pressedColor === color && { elevation: 10 },
+                                ]}
+                                />
+                            ))
+                            
+                        }
                     </View>
                     
                 </View>
                 <View style={{gap:7}}>
                      <Text style={{fontSize:15,color:colorScheme === 'dark' ? '#b1b5c3' : '#c5c5c5',}}>Size</Text>
                     <View style={styles.colorsContainer}>
-                      <TouchableOpacity><Text style={[styles.colors,{backgroundColor:'#fafafa'}]}>S</Text></TouchableOpacity>
-                      <TouchableOpacity><Text style={[styles.colors,{backgroundColor:'#fafafa'}]} >M</Text></TouchableOpacity>
-                      <TouchableOpacity><Text style={[styles.colors,{backgroundColor:'#fafafa'}]}>L</Text></TouchableOpacity>
+                        {
+                            size.map((s,index)=>(
+                                <TouchableOpacity 
+                                    onPress={()=>{
+                                        setAddToCartPressed({
+                                            ...addToCartPressed,
+                                            size: s
+                                        })
+                                    }} 
+                                    key={index}>
+                                    <Text style={[styles.colors,{backgroundColor:'#fafafa'}]}>{s}</Text>
+                                </TouchableOpacity>
+                            ))
+                        }
+                    
                     </View>
                 </View>  
                
@@ -81,7 +105,7 @@ const ProductScreen = ({route}) => {
                 showDescription === true ? 
                     <View style={styles.descriptionContainer}>
                         <Text style={{ color: colorScheme === 'dark' ? 'white' : 'black' }}>
-                            {product.description} asdasd
+                            {product.description}
                         </Text>
                     </View>
                 :null
@@ -107,7 +131,7 @@ const ProductScreen = ({route}) => {
                     }
 
         </ScrollView>
-         <TouchableOpacity style={[styles.addToCart, colorScheme === 'dark' && { backgroundColor: '#43484b' }]}>
+         <TouchableOpacity onPress={addToCart} style={[styles.addToCart, colorScheme === 'dark' && { backgroundColor: '#43484b' }]}>
             <Ionicons name='bag-handle' size={25} color='white'/>
                <Text style={styles.addToCartText}>Add To Cart</Text>
         </TouchableOpacity>

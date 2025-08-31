@@ -17,13 +17,16 @@ import { accessories } from '../data/products';
 import {accessoriesBanner} from '../data/products';
 import womenProducts  from '../data/products';
 import IsLoggedIn from '../components/isLoggedIn';
+import { useSelector } from 'react-redux';
 
 const HomeScreen = () => {
+  const userName = useSelector((state)=>state.user.userName)
+  console.log('userName: ',userName)
   const [selectedCategory, setSelectedCategory] = useState<string>('Women');
   return (
     <>
     {/* <IsLoggedIn> */}
-      <Header text="GemStore" />
+      <Header text={userName} />
       <ScrollHeader setSelectedCategory={setSelectedCategory} />
       {
         selectedCategory === 'Women' ? 

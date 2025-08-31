@@ -20,7 +20,7 @@ const GenderPage = ({ bannerData, products1, backgroundImage, products2 , naviga
   //  },[])
   useEffect(()=>{
     console.log('mnounted Gender Page',category)
-    return () => console.log('unmounted Gender Page',category)
+   // return () => console.log('unmounted Gender Page',category)
   })
   return (
     <ScrollView style={[styles.container,colorScheme === 'dark' && {backgroundColor:'#2a2f37'}]} showsVerticalScrollIndicator={false}>
@@ -31,7 +31,7 @@ const GenderPage = ({ bannerData, products1, backgroundImage, products2 , naviga
         />
       </View>
       <Divider text="Feature Products" />
-      <ProductsList products={products1} navigation={navigation} />
+      <ProductsList products={products1} category={category} navigation={navigation} />
 
       {bannerData.map((banner, index) => (
         <View key={index} style={{ marginTop: index === 0 ? -40 : 20 }}>

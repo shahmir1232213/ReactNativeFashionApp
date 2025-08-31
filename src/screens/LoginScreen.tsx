@@ -3,14 +3,17 @@ import SigningHeaders from '../components/SigningHeaders'
 import SigningInputFields from '../components/SigningInputFields'
 import SigningButton from '../components/SigningButton'
 import { useNavigation } from '@react-navigation/native'
+import { useSelector,useDispatch } from 'react-redux'
 import React,{useState,useEffect} from 'react'
 import * as Keychain from "react-native-keychain";
 import API from '../api'
+import { setUser } from '../redux/slices/userSlice'
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+  const dispatch = useDispatch()
 //  useEffect(()=>{
 //     async function clear(){
 //       setTimeout(async () => (await Keychain.resetGenericPassword()),1500 )
@@ -29,6 +32,7 @@ const LoginScreen = () => {
         if(response.status === 200){
           console.log("response", response.data);
           await Keychain.setGenericPassword('token', response.data.token);
+          dispatch(setUser(email))
           navigation.navigate('MainTabs',{screens:'Home'});
          //navigation.navigate('TestScreen')
          // const credentials = await Keychain.getGenericPassword();

@@ -2,7 +2,7 @@ import { Text, StyleSheet, View, Image, ScrollView,TouchableOpacity,useColorSche
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
-const ProductsList = ({ products }) => {
+const ProductsList = ({ products,category }) => {
   const navigation = useNavigation();
   const colorScheme = useColorScheme();
 
@@ -12,7 +12,7 @@ const ProductsList = ({ products }) => {
         {products.map((item, index) => (
           <TouchableOpacity  style={styles.card} key={index} 
           onPress={() => {
-            navigation.navigate('ProductScreen',{ product: item });
+            navigation.navigate('ProductScreen',{ product: item ,category:category});
           }}>
             <View style={styles.product}>
               <Image style={styles.image} source={item.image} />
