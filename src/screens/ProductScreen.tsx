@@ -12,13 +12,14 @@ const ProductScreen = ({route}) => {
   const [showDescription, setShowDescription] = useState<boolean>(false);
   const [showReview, setShowReview] = useState<boolean>(false)
   const [pressedColor, setPressedColor] = useState(null);
-  console.log('caregory: ',route.params)
+  //console.log('caregory: ',route.params)
   const [addToCartPressed, setAddToCartPressed] = useState<CartState>({
     category: category,
     name: product.productText,
     size: '',
     color: '',
     quantity: 1,
+    image:product.image
   });
   const colorScheme = useColorScheme();
   const colors = ['#ee6969', '#e7c0a7', 'black'];

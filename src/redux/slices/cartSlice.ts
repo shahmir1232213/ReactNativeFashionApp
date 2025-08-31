@@ -6,7 +6,8 @@ export interface CartState {
     size:string,
     quantity:number,
     color:string,
-    address?:string
+    address?:string,
+    image?:string
 }
 
 const initialState:CartState[] = []
