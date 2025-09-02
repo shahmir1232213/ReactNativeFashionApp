@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View, Image, Pressable, FlatList, useColorScheme } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import React from 'react'
+import { updateCart } from '../redux/slices/cartSlice'
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart)
   const colorScheme = useColorScheme() // 'dark' | 'light'
+  const dispatch = useDispatch()
 
   const isDark = colorScheme === 'dark'
 
@@ -34,24 +36,29 @@ const CartPage = () => {
               <Text style={textStyle}>{item.name}</Text>
               <Text style={[textStyle, { fontSize: 20 }]}>$ 80</Text>
               <View style={styles.childDetail}>
+                <View style={styles.pehelvan}>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                   <Text style={[textStyle, { fontSize: 12 }]}>
                     color : {item.color}
                   </Text>
                   <Text style={[textStyle, { fontSize: 12 }]}> | Size: {item.size}</Text>
                 </View>
+                </View>
                 <View style={styles.quantity}>
                   <Pressable onPress={() => {
                     const index = cart.findIndex(index => index.name === item.name)
-                    //console.log('minus pressed')
-                    //console.log('product found: ',cart[index])
-                    //cart[index].quantity
-
+                    dispatch(updateCart({index,functionality:'decrease'}))
+                  //  console.log('cart minused: ',cart)
+                    console.log('minus pressed')
                   }}>
                     <AntDesign name="minus" color={isDark ? 'white' : 'black'} size={15} />
                   </Pressable>
-                  <Text style={textStyle}>1</Text>
-                  <Pressable onPress={() => console.log('plus pressed')}>
+                  <Text style={[textStyle,{textAlign:'center',color:'#808080',fontWeight:'light'}]}>{item.quantity}</Text>
+                  <Pressable onPress={() => {
+                    console.log('plus pressed')
+                    const index = cart.findIndex(index => index.name === item.name)
+                    dispatch(updateCart({index,functionality:'increase'}))
+                  }}>
                     <AntDesign name="plus" color={isDark ? 'white' : 'black'} size={15} />
                   </Pressable>
                 </View>
@@ -77,18 +84,20 @@ const styles = StyleSheet.create({
     width: '87%',
     height: 100,
     borderRadius: 20,
-    flexDirection: 'row'
+    flexDirection: 'row',
+  //  borderWidth: 2,
+  //  borderColor: '#808080',
   },
   image: {
     width: '35%',
     height: '100%',
     resizeMode: 'contain',
     borderRadius: 20,
-    backgroundColor: '#e4e1e8'
+    backgroundColor: '#e7e8e9'
   },
   productDetails: {
-    borderWidth: 2,
-    borderColor: 'blue',
+  //  borderWidth: 2,
+   // borderColor: 'blue',
     width: '65%',
     height: '100%',
     gap: 7,
@@ -99,23 +108,31 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   childDetail: {
-    borderWidth: 2,
-    borderColor: 'green',
+    //borderWidth: 2,
+  //  borderColor: 'green',
     height: '35%',
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 20,
+   // gap: 20,
     alignItems:'center'
   },
   quantity: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 20,
-    borderColor: 'red',
-    flex: 1,
+    borderColor: '#808080',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    height:23
+    height:23,
+    width:70,
+    paddingLeft:4,
+    paddingRight:4,
+    backgroundColor:'transparent',
+  //  alignSelf:'flex-end'
+  },
+  pehelvan:{
+   // borderWidth: 2,
+  //  borderColor: 'red',
   }
 })
