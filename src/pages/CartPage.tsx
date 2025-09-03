@@ -6,6 +6,7 @@ import { updateCart } from '../redux/slices/cartSlice'
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart)
+  console.log('cart: ',cart)
   const colorScheme = useColorScheme() // 'dark' | 'light'
   const dispatch = useDispatch()
 
@@ -34,7 +35,7 @@ const CartPage = () => {
             <Image source={item.image} style={styles.image} />
             <View style={styles.productDetails}>
               <Text style={textStyle}>{item.name}</Text>
-              <Text style={[textStyle, { fontSize: 20 }]}>$ 80</Text>
+              <Text style={[textStyle, { fontSize: 20,color:'white' }]}>$ {item.priceDisplay}</Text>
               <View style={styles.childDetail}>
                 <View style={styles.pehelvan}>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>

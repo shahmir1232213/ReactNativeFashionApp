@@ -7,7 +7,9 @@ export interface CartState {
     quantity:number,
     color:string,
     address?:string,
-    image?:string
+    image?:string,
+    price:number,
+    priceDisplay?:number
 }
 
 const initialState:CartState[] = []
@@ -23,14 +25,20 @@ const cartSlice = createSlice({
         updateCart:(state,action:PayloadAction<CartState>)=>{
           // console.log('action payload: ',action.payload.functionality)
          if(action.payload.functionality === 'decrease'){
-            if(state[action.payload.index].quantity > 1) 
+            if(state[action.payload.index].quantity > 1) {
                 state[action.payload.index].quantity -= 1
-            else
+                 state[action.payload.index].priceDisplay -= state[action.payload.index].price
+            }
+            else{
                  state.splice(state[action.payload.index],1)
+            }
 
         }
-         else if(action.payload.functionality === 'increase') 
-           state[action.payload.index].quantity += 1
+         else if(action.payload.functionality === 'increase') {
+           state[action.payload.index].quantity += 1;
+           state[action.payload.index].priceDisplay += state[action.payload.index].price
+         }
+
          else return
         },
     },

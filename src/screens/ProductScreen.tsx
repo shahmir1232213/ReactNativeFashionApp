@@ -9,6 +9,7 @@ import { add } from 'react-native/types_generated/Libraries/Animated/AnimatedExp
 
 const ProductScreen = ({route}) => {
   const { product,category } = route.params;
+  //console.log('product: ',product)
   const [showDescription, setShowDescription] = useState<boolean>(false);
   const [showReview, setShowReview] = useState<boolean>(false)
   const [pressedColor, setPressedColor] = useState(null);
@@ -19,7 +20,9 @@ const ProductScreen = ({route}) => {
     size: '',
     color: '',
     quantity: 1,
-    image:product.image
+    image:product.image,
+    price:product.productPrice,
+    priceDisplay:product.productPrice
   });
   const colorScheme = useColorScheme();
   const colors = ['#ee6969', '#e7c0a7', 'black'];
