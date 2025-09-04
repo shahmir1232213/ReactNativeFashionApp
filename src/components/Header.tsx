@@ -2,12 +2,15 @@ import { StyleSheet, Text, View, ScrollView, useColorScheme } from 'react-native
 import Notification from 'react-native-vector-icons/FontAwesome'
 import React from 'react'
 
-const Header: React.FC= () => {
+const Header: React.FC= ({head}) => {
     const colorScheme = useColorScheme()
+    const isDark = colorScheme === 'dark'
     return (
-        <View style={[styles.heading, colorScheme === 'dark' && { backgroundColor: '#2a2f37'}]} >
-            <Text style={[styles.header, colorScheme === 'dark' && { color: 'white'}]}>Gem Store</Text>
+       <View style={[styles.heading, isDark && { backgroundColor: '#2a2f37' }]}>
+            <Text style={[styles.header, colorScheme === 'dark' && { color: 'white'}]}>{head ? head : 'Gem Store'}</Text>
+            {!head &&
             <Notification name='bell' color={colorScheme === 'dark' ? 'white' : '#2a2f37'} size={23}  />
+            }
         </View>
     )
 }

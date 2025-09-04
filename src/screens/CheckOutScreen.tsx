@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Header from '../components/Header'
 
 const CheckOutScreen = () => {
   return (
     <View>
-      <Text>CheckOutScreen</Text>
+      <Header head='Checkout'/>
     </View>
   )
 }
