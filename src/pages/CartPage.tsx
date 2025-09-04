@@ -16,7 +16,7 @@ const CartPage = () => {
 
   const containerStyle = [
     styles.container,
-    { backgroundColor: isDark ? 'black' : 'white' }
+    { backgroundColor: isDark ? '#2a2f37' : 'white' }
   ]
 
   const textStyle = [
