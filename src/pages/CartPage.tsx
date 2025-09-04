@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View, Image, Pressable, FlatList, useColorScheme } from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable, FlatList, useColorScheme,TouchableOpacity} from 'react-native'
 import { useSelector,useDispatch } from 'react-redux'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import React from 'react'
 import { updateCart } from '../redux/slices/cartSlice'
+import Entypo from 'react-native-vector-icons/Entypo'
+import { useNavigation } from '@react-navigation/native';
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart)
-  console.log('cart: ',cart)
   const colorScheme = useColorScheme() // 'dark' | 'light'
   const dispatch = useDispatch()
+  const navigation = useNavigation()
 
   const isDark = colorScheme === 'dark'
 
@@ -35,7 +37,7 @@ const CartPage = () => {
             <Image source={item.image} style={styles.image} />
             <View style={styles.productDetails}>
               <Text style={textStyle}>{item.name}</Text>
-              <Text style={[textStyle, { fontSize: 20,color:'white' }]}>$ {item.priceDisplay}</Text>
+              <Text style={[textStyle, { fontSize: 20 }]}>$ {item.priceDisplay}</Text>
               <View style={styles.childDetail}>
                 <View style={styles.pehelvan}>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
@@ -68,6 +70,23 @@ const CartPage = () => {
           </View>
         )}
       />
+      {/* Fixed bottom button */
+      cart.length > 0 ? 
+      <View style={{ position: 'absolute', bottom: 20, left: 0, right: 0, alignItems: 'center' }}>
+        <TouchableOpacity 
+          onPress={() => navigation.navigate('Checkout')} 
+          style={[
+            styles.addToCart, 
+            colorScheme === 'dark' && { backgroundColor: 'white' }
+          ]}
+        >
+          <Entypo name='wallet' size={15} color={isDark ? 'black' : 'white'} />
+          <Text style={[styles.addToCartText, colorScheme === 'dark' && { color:'black' } ]}>Proceed to checkout</Text>
+        </TouchableOpacity>
+      </View>
+      : <Text style={{ color: isDark ? 'white' : 'black', fontSize: 23 }}>Empty Cart</Text>
+      
+    }
     </View>
   )
 }
@@ -77,6 +96,7 @@ export default CartPage
 const styles = StyleSheet.create({
   container: {
     paddingTop: 23,
+    paddingBottom:23,
     flex: 1,
     backgroundColor: 'black', // default dark
     alignItems: 'center'
@@ -135,5 +155,20 @@ const styles = StyleSheet.create({
   pehelvan:{
    // borderWidth: 2,
   //  borderColor: 'red',
-  }
+  },
+  addToCart:{
+        backgroundColor:'#343434',
+        width:'70%',
+        height:40,
+        borderRadius: 100,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
+        gap:22
+    },
+    addToCartText:{
+        color:'white',
+        fontSize:15,
+        fontWeight:'bold'
+    },
 })

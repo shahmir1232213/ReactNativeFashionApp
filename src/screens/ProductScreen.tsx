@@ -3,6 +3,7 @@ import React,{useState} from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { setCart } from '../redux/slices/cartSlice'
 import Arrow from 'react-native-vector-icons/MaterialIcons'
+import CartButton from '../components/Buttons/CartButton'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import type { CartState } from '../redux/slices/cartSlice'
 import { add } from 'react-native/types_generated/Libraries/Animated/AnimatedExports'
@@ -135,10 +136,7 @@ const ProductScreen = ({route}) => {
                     }
 
         </ScrollView>
-         <TouchableOpacity onPress={addToCart} style={[styles.addToCart, colorScheme === 'dark' && { backgroundColor: '#43484b' }]}>
-            <Ionicons name='bag-handle' size={25} color='white'/>
-               <Text style={styles.addToCartText}>Add To Cart</Text>
-        </TouchableOpacity>
+        <CartButton onPress={addToCart} text='Add To Cart'/>
     </View>
   )
 }

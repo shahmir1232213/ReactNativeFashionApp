@@ -7,7 +7,8 @@ import ProductScreen from '../screens/ProductScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import TestScreen from '../screens/TestScreen';
-import IsLoggedIn from '../components/isLoggedIn'
+import CheckOutScreen from '../screens/CheckOutScreen';
+import IsLoggedIn from '../components/isLoggedIn';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +22,7 @@ export default function StackNavigation() {
       <Stack.Screen name="LoginScreen" component={LoginScreen}/>
       <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
       <Stack.Screen name="TestScreen" component={TestScreen} /> 
-
+      <Stack.Screen name='Checkout' component={CheckOutScreen} />
            {/* <Stack.Screen 
             name="TestScreen"
             component={() => (
