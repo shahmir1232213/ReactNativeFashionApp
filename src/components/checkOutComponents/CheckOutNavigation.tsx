@@ -10,8 +10,7 @@ const icons = [
   { icon: <Ionicons name="checkmark-done-circle" size={30} /> },
 ];
 
-const checkOutNavigation = () => {
-  const [activeKey, setActiveKey] = useState<number>(0);
+const checkOutNavigation = ({activeKey, setActiveKey}) => {
   const scheme = useColorScheme();
   const isDarkMode = scheme === 'dark';
 

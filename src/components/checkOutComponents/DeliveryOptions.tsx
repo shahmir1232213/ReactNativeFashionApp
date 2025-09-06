@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, useColorScheme } from "react-native";
 
 const DeliveryOptions = () => {
   const [selected, setSelected] = useState("free");
+  const scheme = useColorScheme();
+  const isDarkMode = scheme === "dark";
 
   const options = [
     {
@@ -26,18 +28,29 @@ const DeliveryOptions = () => {
   ];
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: isDarkMode ? "#141416" : "#fff" },
+      ]}
+    >
       {options.map((opt) => (
         <Pressable
           key={opt.id}
           style={[
             styles.option,
-            selected === opt.id && styles.optionSelected,
+            { borderColor: isDarkMode ? "#333" : "#ddd" },
+            selected === opt.id && { borderColor: "#00C2A8" },
           ]}
           onPress={() => setSelected(opt.id)}
         >
           {/* Radio button */}
-          <View style={styles.radioOuter}>
+          <View
+            style={[
+              styles.radioOuter,
+              { borderColor: isDarkMode ? "#fff" : "#000" },
+            ]}
+          >
             {selected === opt.id && <View style={styles.radioInner} />}
           </View>
 
@@ -47,14 +60,19 @@ const DeliveryOptions = () => {
               <Text
                 style={[
                   styles.price,
+                  { color: isDarkMode ? "#fff" : "#000" },
                   opt.price === "Free" && styles.freePrice,
                 ]}
               >
                 {opt.price}
               </Text>
-              <Text style={styles.title}>{opt.title}</Text>
+              <Text style={[styles.title, { color: isDarkMode ? "#fff" : "#000" }]}>
+                {opt.title}
+              </Text>
             </View>
-            <Text style={styles.subtitle}>{opt.subtitle}</Text>
+            <Text style={[styles.subtitle, { color: isDarkMode ? "#aaa" : "#555" }]}>
+              {opt.subtitle}
+            </Text>
           </View>
         </Pressable>
       ))}
@@ -64,27 +82,21 @@ const DeliveryOptions = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#111", // dark bg
     padding: 16,
   },
   option: {
     flexDirection: "row",
     alignItems: "flex-start",
     borderWidth: 1,
-    borderColor: "transparent",
     borderRadius: 8,
     padding: 12,
     marginBottom: 10,
-  },
-  optionSelected: {
-    borderColor: "#00FFFF", // cyan border
   },
   radioOuter: {
     width: 22,
     height: 22,
     borderRadius: 11,
     borderWidth: 2,
-    borderColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     marginRight: 12,
@@ -102,17 +114,15 @@ const styles = StyleSheet.create({
   },
   price: {
     fontWeight: "bold",
-    color: "#fff",
     marginRight: 6,
   },
   freePrice: {
     color: "#00C2A8",
   },
   title: {
-    color: "#fff",
+    fontWeight: "500",
   },
   subtitle: {
-    color: "#aaa",
     fontSize: 12,
   },
 });

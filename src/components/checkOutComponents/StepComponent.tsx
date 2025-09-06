@@ -9,7 +9,7 @@ interface Prop {
 const StepComponent: React.FC<Prop> = ({ step, stepHead }) => {
   const scheme = useColorScheme();
   const isDarkMode = scheme === 'dark';
-
+  console.log('Rendering StepComponent with step:', step, 'and stepHead:', stepHead);
   return (
     <View style={[styles.stepCont, isDarkMode ? styles.stepContDark : styles.stepContLight]}>
       <Text style={[styles.step, isDarkMode ? styles.textDark : styles.textLight]}>{step}</Text>
@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
   stepCont: {
     marginTop: 20,
     // paddingRight: 20,
-    marginBottom: 20,
+    //marginBottom: ,
     paddingLeft: 20,
-  //  borderWidth: 2,
+   // borderWidth: 2,
     width: '100%',
-    height: '10%',
+    //height: '10%',
     flexDirection: 'column',
     justifyContent: 'flex-start',
   },
