@@ -16,7 +16,7 @@ const ScrllHeader = ({ setSelectedCategory }) => {
   const colorScheme = useColorScheme()
 
   return (
-    <View style={[styles.scrollView, colorScheme === 'dark' && { backgroundColor: '#2a2f37' }]}>
+    <View style={[styles.scrollView, colorScheme === 'dark' && { backgroundColor: '#141416' }]}>
       <ScrollView
         horizontal
         contentContainerStyle={{

@@ -7,7 +7,7 @@ const ProductsList = ({ products,category }) => {
   const colorScheme = useColorScheme();
 
   return (
-    <View style={[styles.container, colorScheme === 'dark' && { backgroundColor: '#2a2f37' }]}>
+    <View style={[styles.container, colorScheme === 'dark' && { backgroundColor: '#141416' }]}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {products.map((item, index) => (
           <TouchableOpacity  style={styles.card} key={index} 
@@ -17,7 +17,7 @@ const ProductsList = ({ products,category }) => {
             <View style={styles.product}>
               <Image style={styles.image} source={item.image} />
             </View>
-            <View style={[styles.productInfo, colorScheme === 'dark' && { backgroundColor: '#2a2f37'}]}>
+            <View style={[styles.productInfo, colorScheme === 'dark' && { backgroundColor: '#141416'}]}>
               <Text style={[styles.productText, colorScheme === 'dark' && { color: 'white' }]}>{item.productText}</Text>
               <Text style={[styles.priceText, colorScheme === 'dark' && { color: 'white' }]}>{`$${item.productPrice}`}</Text>
             </View>

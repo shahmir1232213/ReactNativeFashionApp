@@ -23,7 +23,7 @@ const GenderPage = ({ bannerData, products1, backgroundImage, products2 , naviga
    // return () => console.log('unmounted Gender Page',category)
   })
   return (
-    <ScrollView style={[styles.container,colorScheme === 'dark' && {backgroundColor:'#2a2f37'}]} showsVerticalScrollIndicator={false}>
+    <ScrollView style={[styles.container,colorScheme === 'dark' && {backgroundColor:'#141416'}]} showsVerticalScrollIndicator={false}>
       <View style={styles.imageCont}>
         <Image
           style={styles.image}

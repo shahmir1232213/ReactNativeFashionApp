@@ -6,10 +6,10 @@ const Header: React.FC= ({head}) => {
     const colorScheme = useColorScheme()
     const isDark = colorScheme === 'dark'
     return (
-       <View style={[styles.heading, isDark && { backgroundColor: '#2a2f37' }]}>
+       <View style={[styles.heading, isDark && { backgroundColor: '#141416' }]}>
             <Text style={[styles.header, colorScheme === 'dark' && { color: 'white'}]}>{head ? head : 'Gem Store'}</Text>
             {!head &&
-            <Notification name='bell' color={colorScheme === 'dark' ? 'white' : '#2a2f37'} size={23}  />
+            <Notification name='bell' color={colorScheme === 'dark' ? 'white' : '#141416'} size={23}  />
             }
         </View>
     )

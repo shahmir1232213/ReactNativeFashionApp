@@ -12,7 +12,7 @@ const Divider: React.FC<Prop> = ({ text }) => {
     <View
       style={[
         styles.container,
-        colorScheme === "dark" && { backgroundColor: "#2a2f37" },
+        colorScheme === "dark" && { backgroundColor: "#141416" },
       ]}
     >
       <Text
