@@ -1,6 +1,7 @@
 import {createSlice,PayloadAction } from '@reduxjs/toolkit';
+import { clear } from 'react-native/types_generated/Libraries/LogBox/Data/LogBoxData';
 
-export interface CartState {
+export interface CartStateItem{
     category:string,
     name:string,
     size:string,
@@ -9,49 +10,64 @@ export interface CartState {
     address?:string,
     image?:string,
     price:number,
-    priceDisplay?:number
+    priceDisplay?:number,
 }
 
-const initialState:CartState[] = []
+interface CartSliceState {
+    items: CartStateItem[];
+    total: number;
+    deliveryCharges?: number;
+}
 
+const initialState: CartSliceState = {
+    items: [],
+    total: 0,
+    deliveryCharges: 0,
+}
 
 const cartSlice = createSlice({
     name:'cart',
     initialState,
     reducers:{
+        setDeliveryCharges(state,action:PayloadAction<number>){
+            state.deliveryCharges = action.payload
+        },
         setCart:(state,action:PayloadActions<CartState>)=>{
-          state.push(action.payload);
+          state.items.push(action.payload);
+          state.total += action.payload.price;
         },
         updateCart:(state,action:PayloadAction<CartState>)=>{
           // console.log('action payload: ',action.payload.functionality)
          if(action.payload.functionality === 'decrease'){
-            if(state[action.payload.index].quantity > 1) {
-                state[action.payload.index].quantity -= 1
-                 state[action.payload.index].priceDisplay -= state[action.payload.index].price
+            if(state.items[action.payload.index].quantity > 1) {
+                state.items[action.payload.index].quantity -= 1
+                state.items[action.payload.index].priceDisplay -= state.items[action.payload.index].price
+                state.total -= state.items[action.payload.index].price
             }
             else{
-                 state.splice(state[action.payload.index],1)
+               state.total -= state.items[action.payload.index].price
+                 state.items.splice(action.payload.index,1)
             }
 
         }
          else if(action.payload.functionality === 'increase') {
-           state[action.payload.index].quantity += 1;
-           state[action.payload.index].priceDisplay += state[action.payload.index].price
+           state.items[action.payload.index].quantity += 1;
+           state.items[action.payload.index].priceDisplay += state.items[action.payload.index].price
+           state.total += state.items[action.payload.index].price
+           console.log('Total Bill: ',state.total)
          }
 
          else return
         },
+        clearCart:(state)=>{
+            state.items = []
+            state.total = 0
+            state.deliveryCharges = 0
+        }
     },
-        // clearCart:(state,action:PayloadActions<string>)=>{
-        //     state.category = ''
-        //     state.name = ''
-        //     state.size = ''
-        //     state.quantity = 0
-        //     state.color = ''
-        //     state.address = ''
-        // }
+      
     
 })
 
-export const {setCart,updateCart} = cartSlice.actions
+export const {setCart,updateCart,setDeliveryCharges,clearCart} = cartSlice.actions
 export default cartSlice.reducer

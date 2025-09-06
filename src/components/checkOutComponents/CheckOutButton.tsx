@@ -17,7 +17,7 @@ const CheckOutButton = ({ text, handleFunc }) => {
                 ]}
             >
                 <Entypo name='wallet' size={15} color={isDark ? 'black' : 'white'} />
-                <Text style={[styles.addToCartText, scheme === 'dark' && { color: 'black' }]}>Proceed to checkout</Text>
+                <Text style={[styles.addToCartText, scheme === 'dark' && { color: 'black' }]}>{text}</Text>
             </TouchableOpacity>
         </View>
     )

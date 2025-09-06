@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { View, Text, Pressable, StyleSheet, useColorScheme } from "react-native";
+import {useDispatch, useSelector } from "react-redux";
+import { setDeliveryCharges } from "../../redux/slices/cartSlice";
 
 const DeliveryOptions = () => {
   const [selected, setSelected] = useState("free");
+  const deliveryCharges = useSelector((state) => state.cart.deliveryCharges);
+  console.log('Current delivery charges from Redux:', deliveryCharges);
   const scheme = useColorScheme();
   const isDarkMode = scheme === "dark";
+  const dispatch = useDispatch();
 
   const options = [
     {
       id: "free",
       price: "Free",
       title: "Delivery to home",
-      subtitle: "Delivery from 3 to 7 business days",
+      subtitle: "Delivery from 13 to 17 business days",
     },
     {
       id: "home",
-      price: "$ 9.90",
+      price:  11.90,
       title: "Delivery to home",
       subtitle: "Delivery from 4 to 6 business days",
     },
     {
       id: "fast",
-      price: "$ 9.90",
+      price:  9.90,
       title: "Fast Delivery",
       subtitle: "Delivery from 2 to 3 business days",
     },
@@ -42,7 +47,11 @@ const DeliveryOptions = () => {
             { borderColor: isDarkMode ? "#333" : "#ddd" },
             selected === opt.id && { borderColor: "#00C2A8" },
           ]}
-          onPress={() => setSelected(opt.id)}
+          onPress={() => {
+            setSelected(opt.id)
+            dispatch(setDeliveryCharges(opt.id === 'free' ? 0 : opt.price))
+          }
+        }
         >
           {/* Radio button */}
           <View
@@ -64,7 +73,7 @@ const DeliveryOptions = () => {
                   opt.price === "Free" && styles.freePrice,
                 ]}
               >
-                {opt.price}
+                $ {opt.price}
               </Text>
               <Text style={[styles.title, { color: isDarkMode ? "#fff" : "#000" }]}>
                 {opt.title}

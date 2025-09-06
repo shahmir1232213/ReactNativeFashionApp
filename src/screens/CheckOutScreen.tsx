@@ -9,6 +9,10 @@ import Divider from '../components/Divider'
 import CartButton from '../components/Buttons/CartButton'
 import Entypo from 'react-native-vector-icons/Entypo'
 import CheckOutButton from '../components/checkOutComponents/CheckOutButton'
+import PriceSummary from '../components/checkOutComponents/PriceSummary'
+import { useNavigation } from '@react-navigation/native'
+import { useSelector,useDispatch } from 'react-redux'
+import {clearCart } from '../redux/slices/cartSlice'
 
 interface UserInfo {
   firstName: string;
@@ -33,10 +37,10 @@ const CheckOutScreen = () => {
     zipCode: "",
     phoneNumber: "",
   });
-
   const scheme = useColorScheme();
   const isDark = scheme === 'dark';
-
+  const navigation = useNavigation();
+  const dispatch = useDispatch()
   function handleFunc(text,prop:keyof UserInfo){
     setUserInfo((prev)=>{
       return{
@@ -78,11 +82,18 @@ useEffect(()=>{
           : activeKey === 1 ?
           <>
             <StepComponent step="STEP 2" stepHead="Payment" />
-           
+            <PriceSummary/>
+            <CheckOutButton text="Place Order" handleFunc={
+              () =>{
+                setActiveKey(2)
+                dispatch(clearCart())
+               }
+              } />
           </>
           :
           <>
-            <StepComponent step="STEP 3" stepHead="Review" />
+            <StepComponent step="STEP 3" stepHead="Order Completed" />
+            <CheckOutButton text="Go to Home" handleFunc={() => {navigation.navigate('MainTabs',{screens:'Home'});}} />
           </>
         }
       </ScrollView>
@@ -104,19 +115,4 @@ const styles = StyleSheet.create({
   containerDark: {
     backgroundColor: '#141416',
   },
-   addToCart:{
-        backgroundColor:'#343434',
-        width:'70%',
-        height:40,
-        borderRadius: 100,
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center',
-        gap:22
-    },
-    addToCartText:{
-        color:'white',
-        fontSize:15,
-        fontWeight:'bold'
-    },
 });

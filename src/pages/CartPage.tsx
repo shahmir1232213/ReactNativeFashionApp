@@ -7,7 +7,7 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import { useNavigation } from '@react-navigation/native';
 
 const CartPage = () => {
-  const cart = useSelector((state) => state.cart)
+  const cart = useSelector((state) => state.cart.items)
   const colorScheme = useColorScheme() // 'dark' | 'light'
   const dispatch = useDispatch()
   const navigation = useNavigation()
