@@ -31,25 +31,25 @@ const checkOutNavigation = ({activeKey, setActiveKey}) => {
               <Text
                 style={[
                   styles.dots,
-                  { backgroundColor: isDarkMode ? '#aaa' : '#777e90' },
+                  { backgroundColor: isDarkMode ? '#aaa' : '#white' },
                 ]}
               />
               <Text
                 style={[
                   styles.dots,
-                  { backgroundColor: isDarkMode ? '#aaa' : '#777e90' },
+                  { backgroundColor: isDarkMode ? '#aaa' : '#white' },
                 ]}
               />
               <Text
                 style={[
                   styles.dots,
-                  { backgroundColor: isDarkMode ? '#aaa' : '#777e90' },
+                  { backgroundColor: isDarkMode ? '#aaa' : '#white' },
                 ]}
               />
               <Text
                 style={[
                   styles.dots,
-                  { backgroundColor: isDarkMode ? '#aaa' : '#777e90' },
+                  { backgroundColor: isDarkMode ? '#aaa' : '#white' },
                 ]}
               />
             </>

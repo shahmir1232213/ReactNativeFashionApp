@@ -1,18 +1,19 @@
 import { StyleSheet, View, useColorScheme ,Text, ScrollView,TouchableOpacity} from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header'
+import Header from '../components/HomeScreenComp/Header'
 import CheckOutNavigation from '../components/checkOutComponents/CheckOutNavigation'
 import StepComponent from '../components/checkOutComponents/StepComponent'
-import SigningInputFields from '../components/SigningInputFields'
+import SigningInputFields from '../components/Form/SigningInputFields'
 import DeliveryOptions from '../components/checkOutComponents/DeliveryOptions'
-import Divider from '../components/Divider'
+import Divider from '../components/HomeScreenComp/Divider'
 import CartButton from '../components/Buttons/CartButton'
 import Entypo from 'react-native-vector-icons/Entypo'
-import CheckOutButton from '../components/checkOutComponents/CheckOutButton'
+import CheckOutButton from '../components/Buttons/CheckOutButton'
 import PriceSummary from '../components/checkOutComponents/PriceSummary'
 import { useNavigation } from '@react-navigation/native'
 import { useSelector,useDispatch } from 'react-redux'
 import {clearCart } from '../redux/slices/cartSlice'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 interface UserInfo {
   firstName: string;
@@ -93,7 +94,9 @@ useEffect(()=>{
           :
           <>
             <StepComponent step="STEP 3" stepHead="Order Completed" />
-            <CheckOutButton text="Go to Home" handleFunc={() => {navigation.navigate('MainTabs',{screens:'Home'});}} />
+              <Ionicons name='bag-handle-sharp'size={120} color={isDark?'white':'black'} style={{alignSelf:'center',marginTop:70}} />
+            <CheckOutButton text="Continue Shopping" handleFunc={() => {navigation.navigate('MainTabs',{screens:'Home'});}} />
+            
           </>
         }
       </ScrollView>

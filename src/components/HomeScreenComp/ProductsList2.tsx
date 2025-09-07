@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, View, Image, Text, StyleSheet, TouchableOpacity, useColorScheme} from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import products from "../data/products"; // Adjust the import path as necessary
+import products from "../../data/products"; // Adjust the import path as necessary
 import { Touchable } from "react-native/types_generated/index";
 
 const ProductsList2 = ({ products }) => {

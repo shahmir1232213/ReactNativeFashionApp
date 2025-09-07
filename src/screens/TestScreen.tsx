@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View,Pressable,Modal} from 'react-native'
 import * as Keychain from "react-native-keychain";
 import { useNavigation } from '@react-navigation/native';
-import SigningButton from '../components/SigningButton';
+import SigningButton from '../components/Buttons/SigningButton';
 import React,{useState,useEffect} from 'react'
 import API from '../api';
 

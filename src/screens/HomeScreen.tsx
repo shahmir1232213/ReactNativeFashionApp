@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import Header from '../components/Header';
-import ScrollHeader from '../components/ScrllHeader';
-import Divider from '../components/Divider';
-import ProductsList from '../components/ProductsList';
-import ProductsList2 from '../components/ProductsList2';
-import Banner from '../components/Banner';
+import Header from '../components/HomeScreenComp/Header';
+import ScrollHeader from '../components/HomeScreenComp/ScrllHeader';
+import Divider from '../components/HomeScreenComp/Divider';
+import ProductsList from '../components/HomeScreenComp/ProductsList';
+import ProductsList2 from '../components/HomeScreenComp/ProductsList2';
+import Banner from '../components/HomeScreenComp/Banner';
 import GenderPage from '../pages/GenderPage';
 import CartPage from '../pages/CartPage';
 import React,{useState} from 'react';

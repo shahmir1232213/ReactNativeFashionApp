@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Image, ScrollView,useColorScheme} from 'react-native';
-import Divider from '../components/Divider';
-import ProductsList from '../components/ProductsList';
-import Banner from '../components/Banner';
-import ProductsList2 from '../components/ProductsList2';
+import Divider from '../components/HomeScreenComp/Divider';
+import ProductsList from '../components/HomeScreenComp/ProductsList';
+import Banner from '../components/HomeScreenComp/Banner';
+import ProductsList2 from '../components/HomeScreenComp/ProductsList2';
 // import * as Keychain from 'react-native-keychain'
 import React,{useEffect} from 'react';
 
