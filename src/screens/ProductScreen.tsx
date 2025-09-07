@@ -86,8 +86,9 @@ const ProductScreen = ({route}) => {
                                             size: s
                                         })
                                     }} 
+                                    style={{borderRadius:50,width:23,height:23,flexDirection:'row',justifyContent:'center',alignItems:'center',backgroundColor:colorScheme === 'dark' ? 'white' : '#787678'}}    
                                     key={index}>
-                                    <Text style={[styles.colors,{backgroundColor:'#fafafa'}]}>{s}</Text>
+                                    <Text style={{color:colorScheme === 'dark' ? 'black' : 'white',fontSize:12,fontWeight:'bold'}}>{s}</Text>
                                 </TouchableOpacity>
                             ))
                         }
@@ -150,6 +151,7 @@ const styles = StyleSheet.create({
     //borderWidth: 2,
    },
    colorsContainer:{
+    
     flexDirection:'row',
     gap:5,
    },
@@ -168,6 +170,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#d0c9b9'
    },
    colors:{
+    
     width:20,
     height:20,
     borderWidth:2,

@@ -7,15 +7,15 @@ const ProfileHeader = () => {
     const isDark = colorScheme === 'dark';
 
     return (
-        <View style={[styles.container, isDark && { backgroundColor: '#141416' }]}>
+        <View style={[styles.container, isDark ? { backgroundColor: '#141416',borderColor: '#262626', } : { backgroundColor: '#fff' ,borderTopWidth: 0,borderBottomWidth:0 }]}>
             <Image
                 source={require('../../../assets/images/avatar.png')}
                 style={{
                     width: 80,
                     height: 80,
                     borderRadius: 50,
-                    borderColor: '#262626',
-                    borderWidth: 2
+                    // borderColor: '#262626',
+                    // borderWidth: 2
                 }}
             />
             <ProfileHeaderText />
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     container: {
         borderTopWidth: 2,
         borderBottomWidth: 2,
-        borderColor: '#262626',
         width: '100%',
         height: '13%',
         flexDirection: 'row',

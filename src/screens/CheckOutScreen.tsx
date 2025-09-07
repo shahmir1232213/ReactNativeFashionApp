@@ -70,7 +70,7 @@ useEffect(()=>{
     <View style={[styles.container, isDark ? styles.containerDark : styles.containerLight]}>
       <Header head="Checkout" />
       <CheckOutNavigation activeKey={activeKey} setActiveKey={setActiveKey} />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{padding:23, paddingBottom: 100 }}>
         { 
           activeKey === 0 ?
           <>

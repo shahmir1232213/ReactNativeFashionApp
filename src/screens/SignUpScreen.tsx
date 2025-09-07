@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View,useColorScheme } from 'react-native'
 import SigningHeaders from '../components/Form/SigningHeaders'
 import SigningInputFields from '../components/Form/SigningInputFields'
 import SigningButton from '../components/Buttons/SigningButton'
@@ -15,9 +15,12 @@ const LoginScreen = () => {
   const [fullName, setFullName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigation = useNavigation();
-
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark'
+  // console.log("colorScheme:", colorScheme);
+  // console.log("isDark:", isDark);
   return (
-    <View style={{paddingTop: 47,paddingLeft:30,paddingRight:30}}>
+    <View style={{paddingTop: 47,paddingLeft:30,paddingRight:30,backgroundColor:isDark ? '#141416':'white',flex:1}}>
       <SigningHeaders header={`Create your${'\n'}your account`} />
       <SigningInputFields labels={[
         { placeholder: 'Full Name', state: fullName, setState: setFullName },
