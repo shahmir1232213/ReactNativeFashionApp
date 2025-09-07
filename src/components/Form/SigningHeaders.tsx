@@ -1,29 +1,35 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { StyleSheet, Text, View, useColorScheme, StyleProp, ViewStyle, TextStyle } from 'react-native';
 
 interface Props {
   header: string;  
 }
 
-const SigningHeaders: React.FC<Props> = ({header}) => {
+const SigningHeaders: React.FC<Props> = ({ header }) => {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.headerText}>{header}</Text>
+    <View style={[styles.container, isDark && { backgroundColor: '#141416' }]}>
+      <Text style={[styles.headerText, isDark && { color: 'white' }]}>{header}</Text>
     </View>
-  )
-}
+  );
+};
 
-export default SigningHeaders
+export default SigningHeaders;
 
-const styles = StyleSheet.create({
-    container:{
-      // borderColor: "red",
-      // borderWidth: 4,
-       paddingBottom: 72,
-    },
-    headerText: {
-        fontSize: 26,
-        fontWeight: '700',
-        color: 'black',
-    }
-})
+type Styles = {
+  container: StyleProp<ViewStyle>;
+  headerText: StyleProp<TextStyle>;
+};
+
+const styles = StyleSheet.create<Styles>({
+  container: {
+    paddingBottom: 72,
+  },
+  headerText: {
+    fontSize: 26,
+    fontWeight: '700',
+    color: 'black',
+  },
+});

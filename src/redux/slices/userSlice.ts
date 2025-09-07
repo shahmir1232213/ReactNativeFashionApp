@@ -1,22 +1,22 @@
 import { createSlice,PayloadAction } from '@reduxjs/toolkit';
 
 type UserState = {
-    userName:string
+    email:string
 }
 
 const initialState:UserState = {
-    userName:''
+    email:''
 }
 
 const userSlice = createSlice({
     name:'user',
     initialState,
     reducers:{
-        setUser:(state,action:PayLoadActions<string>) => {
-            state.userName = action.payload
+        setUser:(state,action:PayloadAction<string>) => {
+            state.email = action.payload
         },
         clearUser:(state) => {
-            state.userName = '';
+            state.email = '';
         }
     }
 })

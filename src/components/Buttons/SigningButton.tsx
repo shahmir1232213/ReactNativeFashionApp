@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Pressable } from 'react-native'
+import { StyleSheet, Text, View,Pressable,useColorScheme } from 'react-native'
 import React from 'react'
 
 interface Props {
@@ -7,9 +7,11 @@ interface Props {
   }
 
 const SigningButton: React.FC<Props> = ({title,onPress}) => {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
   return (
-    <Pressable style={styles.button} onPress={onPress}>
-      <Text style={styles.buttonText}>{title}</Text>
+    <Pressable style={[styles.button, isDark && { backgroundColor: '#ffffff' }]} onPress={onPress}>
+      <Text style={[styles.buttonText, isDark && { color: 'black' }]}>{title}</Text>
     </Pressable>
   )
 }

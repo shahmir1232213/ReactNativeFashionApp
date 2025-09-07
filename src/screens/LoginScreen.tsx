@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View ,useColorScheme} from 'react-native'
 import SigningHeaders from '../components/Form/SigningHeaders'
 import SigningInputFields from '../components/Form/SigningInputFields'
 import SigningButton from '../components/Buttons/SigningButton'
@@ -14,6 +14,11 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch()
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark'
+  // console.log("colorScheme:", colorScheme);
+  // console.log("isDark:", isDark);
+
 //  useEffect(()=>{
 //     async function clear(){
 //       setTimeout(async () => (await Keychain.resetGenericPassword()),1500 )
@@ -49,17 +54,17 @@ const LoginScreen = () => {
     }
 
   return (
-    <View style={{paddingTop: 47,paddingLeft:30,paddingRight:30}}>
+    <View style={{paddingTop: 47,paddingLeft:30,paddingRight:30,backgroundColor:isDark ? '#141416':'white',flex:1}}>
       <SigningHeaders header={`Log into ${'\n'}your account`} />
       <SigningInputFields labels={[
         { placeholder: 'Email address', state: email, setState: setEmail },
         { placeholder: 'Password', state: password, setState: setPassword }
       ]} />
       <View style={{alignItems:'center'}}>
-        <SigningButton title='Log In' onPress={() => handleLogin(email, password)} />
+        <SigningButton title='LOG IN' onPress={() => handleLogin(email, password)} />
       </View>
     <Pressable onPress={()=>navigation.navigate('SignUpScreen')}>
-        <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
+        <Text style={[styles.signupText, isDark && { color: 'white' }]}>Don't have an account? Sign Up</Text>
     </Pressable>
     
     </View>

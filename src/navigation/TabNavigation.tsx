@@ -4,6 +4,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Search from 'react-native-vector-icons/Feather'
 import Profile from 'react-native-vector-icons/Ionicons'
 import { useColorScheme } from 'react-native';
+import MyProfile from '../pages/MyProfile';
 import IsLoggedIn from '../components/isLoggedIn'
 
 const Tab = createBottomTabNavigator();
@@ -48,7 +49,7 @@ export default function MyTabs() {
       /> 
        <Tab.Screen 
         name="Profile" 
-        component={HomeScreen} 
+        component={MyProfile} 
         options={{
             tabBarLabel:'',
             tabBarIcon:({color})=>(
